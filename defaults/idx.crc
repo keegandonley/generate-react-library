@@ -1,5 +1,1 @@
-import %Name% from './components/%name%.js';
-
-export default { 
-	%Name%
-};
+export { default as %Name% } from './components/%name%.js';
