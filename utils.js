@@ -81,3 +81,27 @@ exports.exec = function exec(cmd, fl, title) {
 		proc.on('close', (code) => resolve(code));
 	});
 }
+
+exports.configBabel = function configBabel(title, value) {
+	fs.writeFileSync(path.join(__dirname, title, '.babelrc'), value);
+}
+
+exports.createComponent = function createComponent(name, title) {
+	// make src directory
+	const dir = path.join(__dirname, title, 'src');
+	fs.mkdirSync(dir);
+
+	// make index.js
+	let index = String(fs.readFileSync(path.join(__dirname, 'defaults', 'idx.crc')));
+	index = index.replace(/%name%/g, name);
+	index = index.replace(/%Name%/g, `${name[0].toUpperCase()}${name.slice(1)}`);
+	fs.writeFileSync(path.join(dir, 'index.js'), index);
+
+	// make components directory
+	fs.mkdirSync(path.join(dir, 'components'));
+	let component = String(fs.readFileSync(path.join(__dirname, 'defaults', 'component.crc')));
+	component = component.replace(/%name%/g, name);
+	component = component.replace(/%Name%/g, `${name[0].toUpperCase()}${name.slice(1)}`);
+	fs.writeFileSync(path.join(dir, 'components', `${name}.js`), component);
+
+}
