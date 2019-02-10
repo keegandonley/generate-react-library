@@ -1,0 +1,20 @@
+{
+	"babel" : [
+		"@babel/cli",
+		"@babel/core",
+		"@babel/preset-env"
+	],
+	"react" : [
+		"@babel/preset-react",
+		"react"
+	],
+	"react-dom": [
+		"react-dom"
+	],
+	"eslint": [
+		"eslint"
+	],
+	"webpack": [
+		"webpack"
+	]
+}
